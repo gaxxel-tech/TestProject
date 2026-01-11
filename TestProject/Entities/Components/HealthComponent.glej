@@ -1,0 +1,79 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "CreatedByOtherEntities": true,
+  "Is2D": true,
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "X",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Y",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Z",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "Informacion",
+          "Type": "String"
+        }
+      ],
+      "Name": "MaxHealth",
+      "SetByDerived": true,
+      "Category": "Informacion"
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "Informacion",
+          "Type": "String"
+        }
+      ],
+      "Name": "CurrentHealth",
+      "SetByDerived": true,
+      "Category": "Informacion"
+    }
+  ],
+  "Name": "Entities\\Components\\HealthComponent",
+  "CustomClassesForExport": []
+}

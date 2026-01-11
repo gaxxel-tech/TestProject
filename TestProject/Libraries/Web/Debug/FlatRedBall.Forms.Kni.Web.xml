@@ -1,0 +1,950 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlatRedBall.Forms.Kni.Web</name>
+    </assembly>
+    <members>
+        <member name="P:FlatRedBall.Forms.Controls.TreeViewItem.IsSelectionActive">
+            <summary>
+            Whether this or any contained TreeViewItems are selected.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TreeViewItem.IsSelected">
+            <summary>
+            Whether this is selected.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TreeViewItem.IsExpanded">
+            <summary>
+            Whether the TreeViewItem is displaying its expanded content (sub items)
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Games.DialogBox.LettersPerSecond">
+            <summary>
+            The number of letters to show per second when printing out in "typewriter style". 
+            If null, 0, or negative, then the text is shown immediately.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Games.DialogBox.FinishedShowing">
+            <summary>
+            Raised when the dialog box finishes showing all pages.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Games.DialogBox.FinishedTypingPage">
+            <summary>
+            Raised whenever a page finishes typing out, either automatically or in response to input.
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.Games.DialogBox.AdvancePageInputPredicate">
+            <summary>
+            If not null, this predicate is used to determine if input
+            has been pressed to advance the input. If null, the default 
+            page-advancing logic will be performed.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Games.DialogBox.Show(System.String,FlatRedBall.Graphics.Layer)">
+            <summary>
+            Shows the dialog box (adds it to managers and sets IsVisible to true) and begins showing the text.
+            </summary>
+            <param name="text">The text to print out, either immediately or letter-by-letter according to LettersPerSecond.</param>
+            <param name="frbLayer">The FlatRedBall Layer to add the DialogBox to. If null, the dialog box will not be layered. This will attempt to use a Gum layer matching the FRB layer. This will automatically work if the Layer has been added through the FlatRedBall Editor.</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Games.DialogBox.ShowAsync(System.String)">
+            <summary>
+            Shows the dialog box (adds it to managers and sets IsVisible to true) and begins showing the text.
+            </summary>
+            <param name="text">The text to print out, either immediately or letter-by-letter according to LettersPerSecond.</param>
+            <returns>A task which completes when the text has been displayed and the DialogBox has been dismissed.</returns>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.Games.DialogBox.showNextPageOnDismissedPage">
+            <summary>
+            This makes the next page auto-show when pushing input on an already-typed out page.
+            This should be true if doing a normal Show call, but false if in an async call since
+            the async call will internally loop through all pages.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Games.InputDeviceSelectionItem.InputDeviceRemoved">
+            <summary>
+            Event raised when the input device is removed by this item. This can happen through a UI button click.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Games.InputDeviceSelector.JoinedInputDevices">
+            <summary>
+            An observable array of joined devices.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Games.InputDeviceSelector.MaxPlayers">
+            <summary>
+            Sets the maximum number of players that can join. 
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Games.InputDeviceSelector.ConfirmedJoinedInput">
+            <summary>
+            Event raised when the user presses the confirm join button, such as the A button on a gamepad or the Enter key on the keyboard.
+            This can be used to advance to the next screen, but the ConfirmJoinedEventArgs should be checked to verify that the game can proceed.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Games.PlayerJoinView.UnsubscribeFromGamepadEvents">
+            <summary>
+            Unsubscribes from controller connection events and join/unjoin logic. This is automatically called
+            when the control is removed so it does not need to be called manually unless the control is created
+            but never added/removed from managers. <seealso cref="M:FlatRedBall.Forms.Controls.Games.PlayerJoinView.SubscribeToGamepadEvents"/>
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Games.PlayerJoinView.SubscribeToGamepadEvents">
+            <summary>
+            Begins behavior to automatically detect gamepad connect and disconnect events. Also enables
+            join and unjoin logic. This is automatically when the Visual is assigned, which is the default behavior when added
+            through the FlatRedBall Editor.
+            </summary>
+            <remarks>
+            For convenience, SubscribeToGamepadEvents is called automatically when the visual is assigned. UnsubscribeFromGamepadEvents must 
+            be called, but this happens automatically when the control is removed through the visual's RemoveFromManagers being called. This 
+            method does not need to be called directly, but can happen as a result of its parent element being removed. Typically this is the
+            Gum screen which is automatically removed when the FlatRedBall Screen is destroyed.
+            
+            Note that if the PlayerJoinView is constructed with a visual, but is never added to managers, then it will not unsubscribe
+            from events. While minor, this does accumulate an event on InputManager.ControllerConnectionEvent.
+            </remarks>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Games.SettingsView.IsAutoApplyingChangesToEngine">
+            <summary>
+            Whether changes on the UI are automatically applied to the underlying engine. Set this to false
+            if changes are manually applied (such as through a ViewModel).
+            </summary>
+        </member>
+        <member name="T:FlatRedBall.Forms.Controls.Popups.ToastManager">
+            <summary>
+            Object responsible for manging the lifecycle of toasts. This can be used to perform fire-and-forget showing of Toast objects.
+            Internally this creates a Toast object using the FlatRedBall.Forms Toast control.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Popups.ToastManager.DefaultToastLayer">
+            <summary>
+            The default layer for showing toast. If this is set at the Screen level, it should
+            be set back to null when the Screen is destroyed.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Popups.ToastManager.Show(System.String,FlatRedBall.Graphics.Layer,System.Double)">
+            <summary>
+            Queues a toast to be shown for the given duration. This method can be called from any thread.
+            If a toast is currently shown, then this message is queued and will be shown on the next toast.
+            </summary>
+            <param name="message">The message to display</param>
+            <param name="frbLayer">The layer for the Toast instance.</param>
+            <param name="durationInSeconds">The number of seconds to display the toast.</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Popups.ToastManager.DestroyLiveToasts">
+            <summary>
+            Removes all live toasts from all managers. This is called automatically when a Screen is destroyed.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Primitives.ButtonBase.Click">
+            <summary>
+            Event raised when the user pushes, then releases the control.
+            This means the cursor is over the button, the button was originally pushed,
+            the primary button was pressed last frame, but is no longer pressed this frame.
+            The "click" terminology comes from the Cursor's PrimaryClick property.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Primitives.ButtonBase.Push">
+            <summary>
+            Event raised when the user pushes on the control. 
+            This means the cursor is over the button and the primary button was not pressed last frame, but is pressed this frame.
+            The "push" terminology comes from the Cursor's PrimaryPush property.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Primitives.ButtonBase.ControllerButtonPushed">
+            <summary>
+            Event raised when any button is pressed on an Xbox360GamePad which is being used by the 
+            GuiManager.GamePadsForUiControl.
+            </summary>
+        </member>
+        <member name="T:FlatRedBall.Forms.Controls.Primitives.RangeBase">
+            <summary>
+            Base class for controls which display or allow a user to change a value between a Minimum and Maximum.
+            This is the base class for ScrollBar and Slider.
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.Primitives.RangeBase.cursorGrabOffsetRelativeToThumb">
+            <summary>
+            Represents the X or Y offset of the cursor relative to the thumb when the thumb was grabbed.
+            If the element is horizontal, this is an X value. If the element is vertical, this is a Y value.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Primitives.RangeBase.LargeChange">
+            <summary>
+            The amount to change Value when the user clicks on the track. 
+            Only applies if IsMoveToPointEnabled is false.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Primitives.RangeBase.SmallChange">
+            <summary>
+            The amount to change Value when the user presses the up or down buttons on a scrollbar, 
+            per mouse wheel tick on a scrollbar, and the amount to change the value in response
+            to left/right presses on gamepad or keyboard on a Slider.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Primitives.RangeBase.Minimum">
+            <summary>
+            The minimum inclusive value which can be set through the UI.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Primitives.RangeBase.Maximum">
+            <summary>
+            The maximum inclusive value which can be set through the UI.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Primitives.RangeBase.Value">
+            <summary>
+            The current value of the RangeBase. This value is clamped to be between Minimum and Maximum.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Primitives.RangeBase.IsMoveToPointEnabled">
+            <summary>
+            Controls whether clicking on the track sets the value to the clicked position.
+            If true, the value moves to the clicked position. If false, the value increases or decreases
+            according to the LargeChange value.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Primitives.RangeBase.ValueChanged">
+            <summary>
+            Event raised whenever the Value property changes regardless
+            of source. This event may be raised multiple times if the user
+            pushes+drags on the track or thumb.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Primitives.RangeBase.ValueChangeCompleted">
+            <summary>
+            Event raised whenever a Value change has completed. This event is raised for discrete
+            changes such as pressing left/right on a keyboard, or pushes on the track when
+            IsMoveToPointEnabled is set to false.
+            </summary>
+            <remarks>
+            This event can be used to prevent responding to changes every frame as a user
+            is dragging a thumb or clicking on a track with IsMoveToPointEnabled set to true.
+            Examples of when to use ValueChangeCompleted would be to play an audio cue when changing
+            volume, or committing changes which are too expensive to perform every frame such as saving
+            settings to disk.
+            </remarks>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Primitives.RangeBase.ValueChangedByUi">
+            <summary>
+            Event raised whenever a Value change is initiated by the UI. This event is not raised
+            when Value changes are performed in code, such as by assigning the Value property.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.Primitives.RangeBase.OrientationChanged">
+            <summary>
+            Event raised when the Orientation property is changed.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Primitives.RangeBase.ReactToVisualRemoved">
+            <inheritdoc/>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Primitives.RangeBase.HandleTrackHover(System.Object,System.EventArgs)">
+            <summary>
+            Handles the user pushing and holding the mouse button
+            on the track. If IsMoveToPointEnabled is true, this 
+            moves the position immediately. Otherwise, it only does
+            so using the track's repeat rate values.
+            </summary>
+            <remarks>
+            If IsMoveToPointEnabled is set to true, then 
+            Value is also updated immediately in HandleTrackDragging;
+            </remarks>
+            <param name="sender">The sender of the event.</param>
+            <param name="e">Args for the event.</param>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.Button.ButtonCategoryName">
+            <summary>
+            The name of the Category containing visual states for the Button object.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Button.Text">
+            <summary>
+            Text displayed by the button. This property requires that the TextInstance instance be present in the Gum component.
+            If the TextInstance instance is not present, an exception will be thrown in DEBUG mode
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.ComboBox.ListBox">
+            <summary>
+            Replaces the internal ListBox with the provided instance.
+            This replaces the Items, SelectedObject, and SelectedIndex unless
+            the properties are bound.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.IsFocused">
+            <summary>
+            Whether this element has input focus. If true, the element shows its focused
+            state and receives input from keyboards and gamepads.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.ActualHeight">
+            <summary>
+            The height in pixels. This is a calculated value considering HeightUnits and Height.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.ActualWidth">
+            <summary>
+            The width in pixels. This is a calculated value considering WidthUnits and Width;
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.AbsoluteLeft">
+            <summary>
+            Returns the left of this element in absolute (screen) coordinates
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.AbsoluteTop">
+            <summary>
+            Returns the top of this element in absolute (screen) coordinates
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.ActualX">
+            <summary>
+            The X position of the left side of the element in pixels.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.ActualY">
+            <summary>
+            The Y position of the top of the element in pixels (positive Y is down).
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.IsEnabled">
+            <summary>
+            Whether the element is enabled or not. When disabled, the element does
+            not respond to user input, and displays a disabled state.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.DefaultFormsComponents">
+            <summary>
+            Contains the default association between Forms Controls and Gum Runtime Types. 
+            This dictionary enabled forms controls (like TextBox) to automatically create their own visuals.
+            The key in the dictionary is the type of Forms control.
+            </summary>
+            <remarks>
+            This dictionary simplifies working with FlatRedBall.Forms in code. It allows one piece of code 
+            (which may be generated by Glue) to associate the Forms controls with a Gum runtime type. Once 
+            this association is made, controls can be created without specifying a gum runtime. For example:
+            var button = new Button();
+            button.Visual.AddToManagers();
+            button.Click += HandleButtonClick;
+            
+            Note that this association is used when instantiating a new Forms type in code, but it is not used when instantiating
+            a new Gum runtime type - the Gum runtime must instantiate and associate its Forms object in its own code.
+            </remarks>
+            <example>
+            FrameworkElement.DefaultFormsComponents[typeof(FlatRedBall.Forms.Controls.Button)] = 
+                typeof(ProjectName.GumRuntimes.LargeMenuButtonRuntime);
+            </example>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.DefaultFormsTemplates">
+            <summary>
+            Contains the default association from a Forms type (such as Button) to the visual template used
+            for that particular forms type (such as the V2 button style, or a Component loaded from the Gum tool).
+            This may contain standard Gum types such as Gum.Forms.Controls, as well as derived types, such as
+            forms types created from components in generated code.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.Show(FlatRedBall.Graphics.Layer)">
+            <summary>
+            Displays this element visually and adds it to the underlying managers for Cursor interaction.
+            </summary>
+            <remarks>
+            This is typically only called if the element is instantiated in code. Elements added
+            to a Gum screen in Gum will automatically be displayed when the Screen is created, and calling
+            this will result in the object being added twice.</remarks>
+            <param name="layer">The layer to add this to, can be null to add it directly to managers</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.ShowDialog(FlatRedBall.Graphics.Layer)">
+            <summary>
+            Displays this visual element (calls Show), and returns a task which completes once
+            the dialog is removed.
+            </summary>
+            <param name="frbLayer">The FlatRedBall Layer to be used to display the element.</param>
+            <returns>A task which will complete once this element is removed from managers.</returns>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.CallLoaded">
+            <summary>
+            Calls the loaded event. This should not be called in custom code, but instead is called by Gum
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.Activity">
+            <summary>
+            Every-frame logic. This will automatically be called if this element is added to the FrameworkElementManager
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.ReactToVisualRemoved">
+            <summary>
+            Method raised when the current visual is changed or set to null. If the visual
+            is being replaced, this is called before the new visual is assigned.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.GetVisual(System.String)">
+            <summary>
+            Searches recursively for and returns a GraphicalUiElement (visual) in this instance by name. Returns null
+            if not found.
+            </summary>
+            <param name="name">The case-sensitive name to search for.</param>
+            <returns>The found GraphicalUiElement, or null if no match is found.</returns>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.FrameworkElement.IsUsingLeftAndRightGamepadDirectionsForNavigation">
+            <summary>
+            Whether to use left and right directions as navigation. If false, left and right directions are ignored for navigation.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.HandleTab(FlatRedBall.Forms.Controls.TabDirection,FlatRedBall.Forms.Controls.FrameworkElement,System.Boolean)">
+            <summary>
+            Shifts focus to the next or previous element in the tab depending on the tabDirection argument.
+            </summary>
+            <param name="tabDirection">The direction to tab</param>
+            <param name="requestingElement">The element which is requesting the tab. This can be a parent of the current element. If null is passed, then this element is 
+            treated as the origin of the tab action.</param>
+            <param name="loop">Whether to loop around to the beginning or end if at the last focusable item.</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.HandleTab(FlatRedBall.Forms.Controls.TabDirection,Gum.Wireframe.GraphicalUiElement,Gum.Wireframe.GraphicalUiElement,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="tabDirection"></param>
+            <param name="requestingVisual">The current element that is either focused, or that has been tested for focus and failed. If this is null
+            then the first or last (depending on direction) element is selected.</param>
+            <param name="parentVisual"></param>
+            <param name="shouldAskParent"></param>
+            <param name="loop"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.FrameworkElement.UpdateState">
+            <summary>
+            Gets the state according to the element's current properties (such as whether it is enabled) and applies it
+            to refresh the Visual's appearance.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.ItemsControl.Items">
+            <summary>
+            The items contained by this ItemsControl. This can contain regular
+            data such as strings, instances of ViewModels, or FrameworkElement instances
+            such as ListBoxItem instances.
+            
+            Typically the Items is assigned or bound to an ObservableCollection. In this case
+            the ItemsControl automatically creates FrameworkElements (such as ListBoxItem instances)
+            in response to items being added or removed from the Items list.
+            </summary>
+            <remarks>
+            The Items list is not guaranteed to reflect the items contained in the ItemsControl
+            if Visual elements have been added directly to the InnerPanel. This can happen if the
+            Visual's InnerPanel's Children are directly added to, or if an instance of an ItemsControl,
+            such as a ListBox, is loaded from the Gum tool pre-filled with ListBoxItems. 
+            
+            If items are not added directly to the InnerPanel, then the Items list and the internal InnerPanel
+            Children will remain in sync since the ItemsControl automatically creates FrameworkElement instances
+            in response to the Items.
+            </remarks>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.ItemsControl.ReactToVisualRemoved">
+            <inheritdoc/>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.ScrollIntoViewStyle.BringIntoView">
+            <summary>
+            Scrolls only if the item is not in view. Scrolls the minimum amount necessary to bring the item into view.
+            In other words, if the item is above the visible area, then the scrolling brings the item to the top.
+            If the item is below the visible area, then the scrolling brings the item to the bottom.
+            If the item is already into view, no scrolling is performed.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.ListBox.CanListItemsLoseFocus">
+            <summary>
+            Whether pressing the B button (back/cancel) should result in individual items losing focus and
+            returning focus to the top level. This should be false if the list box is the only object in the 
+            screen which can receive focus.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.ListBox.LoseListItemFocusOnPrimaryInput">
+            <summary>
+            Whether the primary input button (usually the A button) results in the highlighted list box item
+            being selected and in the ListBox focus moving outside of the individual items.
+            </summary>
+            <remarks>
+            This value is true, but can be changed to false if the A button should perform actions on the highlighted
+            list box item (such as toggling a check box) without focus being moved out of the individual items.
+            </remarks>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.ListBox.DragDropReorderMode">
+            <summary>
+            Controls the ListBox's drag+drop behavior for reordering ListBoxItems. If true,
+            items can be reordered by pushing on an item and dragging it to the position of 
+            another item. By default this is set to NoReorder.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.ListBox.SelectionChanged">
+            <summary>
+            Event raised whenever the selection changes. The object parameter is the sender (list box) and the SelectionChangedeventArgs
+            contains information about the changed selected items.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.ListBox.ControllerButtonPushed">
+            <summary>
+            Event raised when the user presses a button, whether at the top level or internally on
+            an item.
+            </summary>
+            <remarks>
+            Until July 2024 this was only firing at the top level. July 2024 version also raises
+            this event when a button is pushed on an item.
+            </remarks>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.ListBox.ScrollIntoView(System.Object,FlatRedBall.Forms.Controls.ScrollIntoViewStyle)">
+            <summary>
+            Scrolls the list view so that the argument item is in view. The amount of scrolling depends on the scrollIntoViewStyle argument.
+            </summary>
+            <param name="item">The item to scroll into view.</param>
+            <param name="scrollIntoViewStyle">The desired location of the item after scrolling.</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.ListBox.ShowPopupListBox(FlatRedBall.Forms.Controls.ScrollViewer,Gum.Wireframe.GraphicalUiElement,System.Boolean)">
+            <summary>
+            Shows the argument popup using the argument listBoxParent to determine its destination layer.
+            </summary>
+            <param name="popup">The popup to show, for example a dropdown from a ComboBox or MenuItem</param>
+            <param name="listBoxParent">The parent visual, which would be something like the ComboBox.Visual</param>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.ListBox.AdditionalOffsetToCheckForDPadNavigation">
+            <summary>
+            The additional offset to check when attempting to find a control when performing DPad navigation. This value is added
+            to the InnerPanel's StackSpacing. Increasing this value is useful if objects in the ListBox are not of uniform size, but
+            if the value is too large then navigation may skip rows or columns.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.ListBox.OnLoseFocus">
+            <summary>
+            Removes focus from the ListBox, both at the top level and at the individual item level, even if CanListItemsLoseFocus is set to false.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.MenuItem.IsRecursiveMenuItem(Gum.Wireframe.GraphicalUiElement)">
+            <summary>
+            Returns whether the argument itemVisual is the visual for either
+            this MenuItem, or any MenuItem contained as a sub-item.
+            </summary>
+            <param name="itemVisual"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.PasswordBox.HandleCharEntered(System.Char)">
+            <summary>
+            Will update the Text based on what was pressed, if existing text was already selected, or enter pressed.  Also updates the caret position.
+            See TextBox.cs for more details
+            </summary>
+            <param name="character">The ascii code character that we need to perform an action on</param>
+        </member>
+        <member name="T:FlatRedBall.Forms.Controls.Panel">
+            <summary>
+            Base control which can contain multiple children. This is most commonly used
+            when instantiating a StackPanel.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Panel.Children">
+            <summary>
+            Returns a read-only list of the children FrameworkElements of this panel. 
+            </summary>
+            <remarks>
+            This list is updated whenever the underlying Visual's Children change.
+            This only contains FrameworkElements, so if a non-FrameworkElement Visual
+            is added to this panel, it will not appear in this list.
+            </remarks>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Panel.#ctor">
+            <summary>
+            Creates a new Panel using default visuals.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Panel.#ctor(Gum.Wireframe.GraphicalUiElement)">
+            <summary>
+            Creates a new Panel using the specified visual.
+            </summary>
+            <param name="visual">The visual to use.</param>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.ScrollBarVisibility.Auto">
+            <summary>
+            The ScrollBar displays only if needed based on the size of the inner panel
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.ScrollBarVisibility.Hidden">
+            <summary>
+            The ScrollBar remains invisible even if the contents of the inner panel exceed the size of its container
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.ScrollBarVisibility.Visible">
+            <summary>
+            The ScrollBar always displays
+            </summary>
+        </member>
+        <member name="T:FlatRedBall.Forms.Controls.ScrollViewer">
+            <summary>
+            A control for displaying stacked items with a scroll bar. Items can be
+            FrameworkElements (Forms) or regular visuals (GraphicalUiElements).
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.ScrollViewer.VerticalScrollBarValue">
+            <summary>
+            The vertical scroll bar value. Assigning this automatically scrolls
+            the ScrollViewer to the desired location. Percentage-based scrolling
+            can be perofrmed by using VerticalScrollBarMaximum. 
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.ScrollViewer.VerticalScrollBarMaximum">
+            <summary>
+            Gets the maximum amount the scroll bar can be scrolled to. This value is automatically
+            assigned by the ScrollViewer in response to children being added.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.ScrollViewer.ReactToVisualRemoved">
+            <inheritdoc/>
+        </member>
+        <member name="T:FlatRedBall.Forms.Controls.Slider">
+            <summary>
+            A control enabling changing a value between the specified Minimum and Maximum
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Slider.TicksFrequency">
+            <summary>
+            The frequency to snap the Slider value when IsSnapToTickEnabled is true. If IsSnapToTickEnabled
+            is false, then this value is ignored.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.Slider.IsSnapToTickEnabled">
+            <summary>
+            Controls whether the TickFrequency is applied when the slider is moved throuh the UI. If false, then any
+            value between Minimum and Maximum is possible. If true, then values snap to the TickFrequency.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.Slider.ReactToVisualRemoved">
+            <inheritdoc/>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TextBox.Text">
+            <summary>
+            Gets and sets the displayed Text. If the text exceeds MaxLength, it will be truncated.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TextBox.MaxLettersToShow">
+            <summary>
+            The maximum letters to display. This can be used to 
+            create an effect where the text prints out letter-by-letter.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TextBox.MaxNumberOfLines">
+            <summary>
+            The maximum number of lines to display. This can be used to 
+            limit how many lines of text are displayed at one time.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.TextBox.TextChanged">
+            <summary>
+            Event raised when the Text property changes.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBox.#ctor">
+            <summary>
+            Creates a new TextBox instance using the default visual.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBox.#ctor(Gum.Wireframe.GraphicalUiElement)">
+            <summary>
+            Creates a new TextBox instance using the specified visual.
+            </summary>
+            <param name="visual"></param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBox.HandleCharEntered(System.Char)">
+            <summary>
+            Will update the Text based on what was pressed, if existing text was already selected, or enter pressed.  Also updates the caret position.  
+            Does not handle control keys like(LEFT, RIGHT, UP, DOWN, HOME, END, BACKSPACE, DELETE, CTRL+C, CTRL+X, CTRL+V, CTRL+A)
+            control key situations are handled by TextBoxBase.HandleKeyDown
+            Key information is gathered from Keyboard.cs in the Activity method, then passed during TextBoxBase.DoKeyboardAction
+            </summary>
+            <param name="character">The ascii code character that we need to perform an action on</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBox.HandleBackspace(System.Boolean)">
+            <summary>
+            Performs logic to handle backspace. This includes deleting individual letters, deleting selection, or deleting the previous word if ctrl is down.
+            </summary>
+            <param name="isCtrlDown">Whether the ctrl key is held. If true, the entire word is deleted rather than a single character.</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBox.DeleteSelection">
+            <summary>
+            Deletes the selected text, updates the caret position, and sets the SelectionLength to 0.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBox.SelectAll">
+            <summary>
+            Sets the SelectionStart to 0 and the SelectionLength to the length of the text, if any.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TextCompositionEventArgs.Text">
+            <summary>
+            The new text value.
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.TextBoxBase.indexPushed">
+            <summary>
+            The cursor index where the cursor was last pushed, used for drag+select
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TextBoxBase.IsCaretVisibleWhenNotFocused">
+            <summary>
+            Whether the caret is visible when not focused. If true, the caret will always stay visible even if the TextBox has lost focus.
+            </summary>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TextBoxBase.AcceptsTab">
+            <summary>
+            Whether pressing the tab key inserts a tab character. If true, then
+            tab characters can be inserted.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBoxBase.HandleKeyDown(Microsoft.Xna.Framework.Input.Keys,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Handles special situations only like [LEFT, HOME, END, BACK (Backspace), RIGHT, UP, DOWN, DELETE, CTRL+C, CTRL+X, CTRL+V, CTRL+A]
+            Data comes from the MonogameGum.Input.Keyboard.Activity() method earlier in the call stack, which gets the data from Monogame's Keyboard.GetState()
+            </summary>
+            <param name="key"></param>
+            <param name="isShiftDown"></param>
+            <param name="isAltDown"></param>
+            <param name="isCtrlDown"></param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBoxBase.DoKeyboardAction(FlatRedBall.Input.IInputReceiverKeyboard)">
+            <summary>
+            Performs key actions based on the keyboard input gathered during Keyboard.cs's Activity() method
+            </summary>
+            <param name="keyboard">State of keyboard from TextInput and Keyboard.GetKeys</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBoxBase.GetLineNumber(System.Int32,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Returns the line number, start of the line, and relative index into the line given an absolute character index
+            </summary>
+            <param name="absoluteCharacterIndex">The absolute character index, where 0 is the first character in the entire text box.</param>
+            <param name="lineNumber">The line number containing the arugment character index.</param>
+            <param name="absoluteStartOfLine">The index of the first character in the argument lineNumber.</param>
+            <param name="relativeIndexOnLine">The relative index in the line, where 0 is the first character in the line.</param>
+        </member>
+        <member name="P:FlatRedBall.Forms.Controls.TextBoxBase.AcceptsReturn">
+            <summary>
+            Whether pressing the return key adds a newline to the text box. If false, the return key does not add a newline.
+            </summary>
+            <remarks>
+            Setting this value to true makes the Visual use its 
+            LineModeCategoryState.Multi state.</remarks>
+        </member>
+        <member name="M:FlatRedBall.Forms.Controls.TextBoxBase.UpdateToSelection">
+            <summary>
+            Updates the Selection visuals to match the current selection values.
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.Controls.TextBoxBase.edgeToTextPadding">
+            <summary>
+            The maximum distance between the edge of the control and the text.
+            Either we will want to make this customizable at some point, or remove
+            this value and base it on some value of a parent, like we do for the scroll
+            bar. This would require the Text to have a custom parent specifically defining
+            the range of the text object.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.ToggleButton.Checked">
+            <summary>
+            Event raised when the IsChecked value is set to true. Seperate events exist for Indeterminate and Unchecked.
+            </summary>
+            <remarks>
+            The Checked/Indeterminate/Unchecked event pattern follows wpf. For more info, see:
+            https://stackoverflow.com/questions/5574613/separate-events-for-checked-and-unchecked-state-of-wpf-checkbox-why
+            </remarks>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.ToggleButton.Indeterminate">
+            <summary>
+            Event raised when the IsChecked value is set to null.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Controls.ToggleButton.Unchecked">
+            <summary>
+            Event raised when the IsChecked value is set to false;
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Data.BinderHelpers.BuildGetter(System.Type,System.String)">
+            <summary>
+            Null-safe getter: returns DependencyProperty.UnsetValue if any intermediate is null.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Data.BinderHelpers.BuildSetter(System.Type,System.String)">
+            <summary>
+            Null-safe setter: no-op if any intermediate is null.
+            </summary>
+        </member>
+        <member name="T:FlatRedBall.Forms.Data.PropertyPathObserver">
+            <summary>
+            Watches a dotted-path (e.g. "Foo.Bar.Baz") on any INotifyPropertyChanged root
+            and raises ValueChanged whenever the final value changes (or any segment in between changes).
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.Data.PropertyPathObserver.ValueChanged">
+            <summary> Raised whenever the value at the end of the path has changed. </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.Data.PropertyPathObserver.Attach(System.Object)">
+            <summary>
+            Start observing on a new root object (detaches from the old).
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.GumExtensions.GraphicalUiElementExtensions.GetLeft(Gum.Wireframe.GraphicalUiElement)">
+            <summary>
+            Returns the absolute X position of the argument GraphicalUiElement.
+            </summary>
+            <param name="graphicalUiElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlatRedBall.Forms.GumExtensions.GraphicalUiElementExtensions.GetTop(Gum.Wireframe.GraphicalUiElement)">
+            <summary>
+            Returns the absolute Y position of the argument GraphicalUiElement.
+            </summary>
+            <param name="graphicalUiElement"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2">
+            <summary>
+            Provides a thread-safe dictionary for use with data binding.
+            </summary>
+            <typeparam name="TKey">Specifies the type of the keys in this collection.</typeparam>
+            <typeparam name="TValue">Specifies the type of the values in this collection.</typeparam>
+        </member>
+        <member name="M:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2.#ctor">
+            <summary>
+            Initializes an instance of the ObservableConcurrentDictionary class.
+            </summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2.CollectionChanged">
+            <summary>Event raised when the collection changes.</summary>
+        </member>
+        <member name="E:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2.PropertyChanged">
+            <summary>Event raised when a property on the collection changes.</summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2.NotifyObserversOfChange">
+            <summary>
+            Notifies observers of CollectionChanged or PropertyChanged of an update to the dictionary.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2.TryAddWithNotification(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>Attempts to add an item to the dictionary, notifying observers of any changes.</summary>
+            <param name="item">The item to be added.</param>
+            <returns>Whether the add was successful.</returns>
+        </member>
+        <member name="M:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2.TryAddWithNotification(`0,`1)">
+            <summary>Attempts to add an item to the dictionary, notifying observers of any changes.</summary>
+            <param name="key">The key of the item to be added.</param>
+            <param name="value">The value of the item to be added.</param>
+            <returns>Whether the add was successful.</returns>
+        </member>
+        <member name="M:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2.TryRemoveWithNotification(`0,`1@)">
+            <summary>Attempts to remove an item from the dictionary, notifying observers of any changes.</summary>
+            <param name="key">The key of the item to be removed.</param>
+            <param name="value">The value of the item removed.</param>
+            <returns>Whether the removal was successful.</returns>
+        </member>
+        <member name="M:FlatRedBall.Forms.MVVM.ObservableConcurrentDictionary`2.UpdateWithNotification(`0,`1)">
+            <summary>Attempts to add or update an item in the dictionary, notifying observers of any changes.</summary>
+            <param name="key">The key of the item to be updated.</param>
+            <param name="value">The new value to set for the item.</param>
+            <returns>Whether the update was successful.</returns>
+        </member>
+        <member name="M:FlatRedBall.Forms.MVVM.DependsOnAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new DependsOnAttribute which access the owner's subproperty.
+            </summary>
+            <param name="owner">The owner of the property.</param>
+            <param name="parentPropertyName">The property inside of the owner.</param>
+        </member>
+        <member name="T:FlatRedBall.Forms.MVVM.TypeMismatchBehavior">
+            <summary>
+            Enum defining the possible behaviors when a ViewModel attempts to retrieve a value of a different type than the property stored.
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.MVVM.TypeMismatchBehavior.IgnoreError">
+            <summary>
+            Error is ignored - the default value for the type is returned.
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.MVVM.TypeMismatchBehavior.ThrowException">
+            <summary>
+            An InvalidCastException is thrown.
+            </summary>
+        </member>
+        <member name="T:FlatRedBall.Forms.MVVM.ViewModel">
+            <summary>
+            Standard implementation of an observable view model.
+            This class implements the INotifyPropertyChanged interface 
+            so it is suitable for use as a base class for any ViewModel
+            in an MVVM architecture. Typically this is used with Gum and 
+            FlatRedBall.Forms.
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.MVVM.ViewModel.DefaultTypeMismatchBehavior">
+            <summary>
+            The behavior of the ViewModel when the Get function attempts to retrieve a value of a different type 
+            than the property stored. If set to Ignore, then no error is raised and the default for the type is returned.
+            If this value is set to ThrowException, then an InvalidCastException is thrown.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.MVVM.ViewModel.SetWithoutNotifying``1(``0,System.String,``0)">
+            <summary>
+            Sets the underlying property without notifying any subscribers. This can be used for initial setting
+            or in rare cases when properties should be set without any 
+            </summary>
+            <typeparam name="T">The type of the property being set.</typeparam>
+            <param name="propertyValue">The new value.</param>
+            <param name="propertyName">The name of the property to set - typically used with nameof.</param>
+            <param name="oldValue">The old value, used to determine if a value should be assigned. If the old value matches the new value, then the property is not assigned and the return value is false.</param>
+            <returns>Whether the value was set. This is true if the old property did not exist, or if the old value does not match the new value. If this is the initial set, then this value is ignored.</returns>
+        </member>
+        <member name="F:FlatRedBall.Forms.TextWrapping.NoWrap">
+            <summary>
+            No line wrapping is performed.
+            </summary>
+        </member>
+        <member name="F:FlatRedBall.Forms.TextWrapping.Wrap">
+            <summary>
+            Line-breaking occurs if the line overflows beyond the available block width,
+            even if the standard line breaking algorithm cannot determine any line break
+            opportunity, as in the case of a very long word constrained in a fixed-width
+            container with no scrolling allowed.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Forms.VisualTemplate.#ctor(System.Func{Gum.Wireframe.GraphicalUiElement})">
+            <summary>
+            Creates a new VisualTemplate with a Func which creates a new GraphicalUiElement.
+            </summary>
+            <param name="creationFunc">The Func to call when CreateContent is called.</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.VisualTemplate.#ctor(System.Func{System.Object,Gum.Wireframe.GraphicalUiElement})">
+            <summary>
+            Instantiates a new VisualTemplate with the provided creation function.
+            </summary>
+            <param name="creationFunc">The creation function which takes a ViewModel and returns a new GraphicalUiElement.</param>
+        </member>
+        <member name="M:FlatRedBall.Forms.VisualTemplate.CreateContent(System.Object,System.Boolean)">
+            <summary>
+            Invokes the constructor for the GraphicalUiElement type and returns the result.
+            </summary>
+            <param name="bindingContext">The binding context to pass in to the newly-created GraphicalUiElement</param>
+            <returns>The new GraphicalUiElement instance</returns>
+        </member>
+        <member name="T:FlatRedBall.Gui.CursorExtensions">
+            <summary>
+            Contains extension methods for the Cursor class for interacting with Gum.
+            </summary>
+        </member>
+        <member name="M:FlatRedBall.Gui.CursorExtensions.XRespectingGumZoomAndBounds(FlatRedBall.Gui.Cursor)">
+            <summary>
+            Returns the screen X of the cursor, updated by zoom and viewport bounds.
+            </summary>
+            <param name="cursor">The argument cursor.</param>
+            <returns>The X coordinate which can be used for UI.</returns>
+        </member>
+        <member name="M:FlatRedBall.Gui.CursorExtensions.YRespectingGumZoomAndBounds(FlatRedBall.Gui.Cursor)">
+            <summary>
+            Returns the screen Y of the cursor, updated by zoom and viewport bounds.
+            </summary>
+            <param name="cursor">The argument cursor.</param>
+            <returns>The Y coordiante which can be used for UI.</returns>
+        </member>
+    </members>
+</doc>

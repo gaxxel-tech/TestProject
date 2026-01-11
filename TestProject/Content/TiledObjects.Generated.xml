@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objecttypes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <objecttype name="HealthComponent">
+    <property name="MaxHealth" type="float" />
+    <property name="CurrentHealth" type="float" />
+  </objecttype>
+  <objecttype name="InputController" />
+  <objecttype name="MovementController">
+    <property name="CurrentSpeed" type="float" default="10" />
+  </objecttype>
+  <objecttype name="StatsComponent" />
+  <objecttype name="SpawnManager">
+    <property name="EnemiesPerSecond" type="int" />
+    <property name="MaxEnemies" type="int" default="20" />
+  </objecttype>
+  <objecttype name="MGulpin">
+    <property name="TeamIndex" type="int" />
+    <property name="MaxHealth" type="float" />
+    <property name="InvulnerabilityTimeAfterDamage" type="float" />
+    <property name="SecondsBetweenDamage" type="float" />
+    <property name="DamageToDeal" type="float" />
+    <property name="MonsterData" type="TestProject.DataTypes.EnemyData" default="Gulpin in EnemyData.csv" />
+  </objecttype>
+  <objecttype name="Player" />
+</objecttypes>

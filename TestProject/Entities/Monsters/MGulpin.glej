@@ -1,0 +1,143 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "BaseEntity": "Entities\\Monsters\\BaseMonster",
+  "CreatedByOtherEntities": true,
+  "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/Monsters/MGulpin/GulpinSprites.png",
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Entities/Monsters/MGulpin/GulpinAnimations.achx",
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Graphics.Animation.AnimationChainList",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "TestProject.DataTypes.EnemyData",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "MonsterType",
+          "Type": "String"
+        }
+      ],
+      "Name": "MonsterData",
+      "DefaultValue": "Gulpin in EnemyData.csv",
+      "SetByDerived": true,
+      "DefinedByBase": true,
+      "Category": "MonsterType"
+    }
+  ],
+  "Properties": [
+    {
+      "Name": "ImplementsICollidable",
+      "Value": true,
+      "Type": "bool"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "SpriteInstance",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "bool",
+          "Member": "CreateMissingAnimationShapes",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "string",
+          "Member": "CurrentChainName",
+          "Value": "Moving",
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "SetCollisionFromAnimation",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "UseAnimationRelativePosition",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "Texture2D",
+          "Member": "Texture",
+          "Value": "<NONE>",
+          "Time": 0.0
+        },
+        {
+          "Type": "AnimationChainList",
+          "Member": "AnimationChains",
+          "Value": "GulpinAnimations",
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true
+    },
+    {
+      "InstanceName": "CircleInstance",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 5.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "HasPublicProperty": true,
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true
+    }
+  ],
+  "Name": "Entities\\Monsters\\MGulpin",
+  "CustomClassesForExport": []
+}

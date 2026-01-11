@@ -1,0 +1,295 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "Is2D": true,
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "X",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Y",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Z",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "int",
+          "Type": "String"
+        },
+        {
+          "Name": "CreatesProperties",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "Name": "TeamIndex",
+      "DefaultValue": 1,
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "decimal",
+          "Type": "String"
+        },
+        {
+          "Name": "CreatesProperties",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "Category",
+          "Value": "Damageable",
+          "Type": "String"
+        }
+      ],
+      "Name": "MaxHealth",
+      "DefaultValue": 100.0,
+      "SetByDerived": true,
+      "Category": "Damageable"
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "double",
+          "Type": "String"
+        },
+        {
+          "Name": "CreatesProperties",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "Category",
+          "Value": "Damageable",
+          "Type": "String"
+        }
+      ],
+      "Name": "InvulnerabilityTimeAfterDamage",
+      "DefaultValue": 0.0,
+      "SetByDerived": true,
+      "Category": "Damageable"
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "double",
+          "Type": "String"
+        },
+        {
+          "Name": "CreatesProperties",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "Category",
+          "Value": "Damage Dealing",
+          "Type": "String"
+        }
+      ],
+      "Name": "SecondsBetweenDamage",
+      "DefaultValue": 0.0,
+      "SetByDerived": true,
+      "Summary": "The number of seconds between dealing damage to the same object. 0 means every frame.",
+      "Category": "Damage Dealing"
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "decimal",
+          "Type": "String"
+        },
+        {
+          "Name": "CreatesProperties",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "Category",
+          "Value": "Damage Dealing",
+          "Type": "String"
+        }
+      ],
+      "Name": "DamageToDeal",
+      "DefaultValue": 10.0,
+      "SetByDerived": true,
+      "Category": "Damage Dealing"
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "TestProject.DataTypes.EnemyData",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "MonsterType",
+          "Type": "String"
+        }
+      ],
+      "Name": "MonsterData",
+      "DefaultValue": "<NULL>",
+      "SetByDerived": true,
+      "Category": "MonsterType"
+    }
+  ],
+  "Properties": [
+    {
+      "Name": "ImplementsICollidable",
+      "Value": true,
+      "Type": "bool"
+    },
+    {
+      "Name": "ImplementsIDamageable",
+      "Value": true,
+      "Type": "bool"
+    },
+    {
+      "Name": "ImplementsIDamageArea",
+      "Value": true,
+      "Type": "bool"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "SpriteInstance",
+      "SourceClassType": "FlatRedBall.Sprite",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "TextureScale",
+          "Value": 1.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Sprite",
+      "HasPublicProperty": true,
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "StatsComponentInstance",
+      "SourceClassType": "Entities\\Components\\StatsComponent",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 1,
+      "SourceFile": "Entities/Components/StatsComponent",
+      "HasPublicProperty": true,
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "MovementControllerInstance",
+      "SourceClassType": "Entities\\Components\\MovementController",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 1,
+      "SourceFile": "Entities/Components/MovementController",
+      "HasPublicProperty": true,
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "HealthComponentInstance",
+      "SourceClassType": "Entities\\Components\\HealthComponent",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 1,
+      "SourceFile": "Entities/Components/HealthComponent",
+      "HasPublicProperty": true,
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    },
+    {
+      "InstanceName": "CircleInstance",
+      "SourceClassType": "FlatRedBall.Math.Geometry.Circle",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "Radius",
+          "Value": 16.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "Circle",
+      "HasPublicProperty": true,
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    }
+  ],
+  "Name": "Entities\\Monsters\\BaseMonster",
+  "CustomClassesForExport": []
+}

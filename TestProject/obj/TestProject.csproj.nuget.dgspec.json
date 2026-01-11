@@ -1,0 +1,159 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Ryzen\\Documents\\FlatRedBallProjects\\TestProject\\TestProject\\TestProject.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Ryzen\\Documents\\FlatRedBallProjects\\TestProject\\TestProject\\TestProject.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Ryzen\\Documents\\FlatRedBallProjects\\TestProject\\TestProject\\TestProject.csproj",
+        "projectName": "TestProject",
+        "projectPath": "C:\\Users\\Ryzen\\Documents\\FlatRedBallProjects\\TestProject\\TestProject\\TestProject.csproj",
+        "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ryzen\\Documents\\FlatRedBallProjects\\TestProject\\TestProject\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FlatRedBallKniWeb": {
+              "target": "Package",
+              "version": "[2025.9.23.733, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.22, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.Sdk.WebAssembly.Pack": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.1, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "nkast.Kni.Platform.Blazor.GL": {
+              "target": "Package",
+              "version": "[4.0.9001.1, )"
+            },
+            "nkast.Xna.Framework": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Audio": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Content": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Content.Pipeline.Builder": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Devices": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Game": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Graphics": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Input": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Media": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.Storage": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            },
+            "nkast.Xna.Framework.XR": {
+              "target": "Package",
+              "version": "[4.0.9001, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

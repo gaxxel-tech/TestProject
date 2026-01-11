@@ -1,0 +1,5 @@
+"ID (string, required)",Health (float),Speed (float),Damage (int),Level (int)
+Slime,50,10,1,2
+Gulpin,10,12,2,1
+,,,,
+,,,,

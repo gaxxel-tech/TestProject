@@ -1,0 +1,80 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "CreatedByOtherEntities": true,
+  "Is2D": true,
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "X",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Y",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Z",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "int",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "Datos Del Spawner",
+          "Type": "String"
+        }
+      ],
+      "Name": "EnemiesPerSecond",
+      "SetByDerived": true,
+      "Category": "Datos Del Spawner"
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "int",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "Datos Del Spawner",
+          "Type": "String"
+        }
+      ],
+      "Name": "MaxEnemies",
+      "DefaultValue": 20,
+      "SetByDerived": true,
+      "Category": "Datos Del Spawner"
+    }
+  ],
+  "Name": "Entities\\Managers\\SpawnManager",
+  "CustomClassesForExport": []
+}
